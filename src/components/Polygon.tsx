@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactElement } from "react";
+import { Fragment, useRef, useState, type ReactElement } from "react";
 import styles from "./Polygon.module.scss";
 import { MouseButton, PolygonMode, type Point } from "../constants";
 import classNames from "classnames";
@@ -74,32 +74,42 @@ function Polygon({
         }}
       />}
       {points.map((point, index) => (
-        <div
+        <Fragment
           key={index}
-          className={classNames(
-            styles.circle,
-            index === activePoint ? styles.active : '',
-          )}
-          onClick={() => {
-            setActivePoint(index);
-            switch (mode) {
-              case PolygonMode.View: {
-                alert(`Clicked point ${index}`);
-                break;
+        >
+          <div
+            className={classNames(
+              styles.circle,
+              index === activePoint ? styles.active : '',
+            )}
+            onClick={() => {
+              setActivePoint(index);
+              switch (mode) {
+                case PolygonMode.View: {
+                  alert(`Clicked point ${index}`);
+                  break;
+                }
+                case PolygonMode.Remove: {
+                  setPoints(points.filter((_, i) => i !== index));
+                  setActivePoint(-1);
+                  break;
+                }
               }
-              case PolygonMode.Remove: {
-                setPoints(points.filter((_, i) => i !== index));
-                setActivePoint(-1);
-                break;
-              }
-            }
-          }}
-          onMouseEnter={() => setHoverPoint(true)}
-          onMouseLeave={() => setHoverPoint(false)}
-          style={{
-            clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
-          }}
-        />
+            }}
+            onMouseEnter={() => setHoverPoint(true)}
+            onMouseLeave={() => setHoverPoint(false)}
+            style={{
+              clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
+            }}
+          />
+          <div
+            className={styles.index}
+            style={{
+              left: `${point.x}%`,
+              top: `${point.y}%`,
+            }}
+          >{index}</div>
+        </Fragment>
       ))}
     </div>
   );
