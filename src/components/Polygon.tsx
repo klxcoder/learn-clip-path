@@ -46,13 +46,23 @@ function Polygon({
         className={styles.img}
         src="./animals.webp"
       />
-      <div
+      {points.length >= 3 && <div
         className={styles.box}
         onClick={() => console.log('Clicked polygon')}
         style={{
-          clipPath: points.length > 0 ? `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})` : undefined,
+          clipPath: `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})`,
         }}
-      />
+      />}
+      {points.map((point, index) => (
+        <div
+          key={index}
+          className={styles.box}
+          onClick={() => console.log('Clicked polygon')}
+          style={{
+            clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
+          }}
+        />
+      ))}
     </div>
   );
 }
