@@ -12,6 +12,7 @@ function Polygon({ onClick }: PolygonProps): ReactElement {
         width: '200px',
         height: '200px',
         backgroundColor: 'rgba(255,0,0,0.3)',
+        border: '10px solid blue',
         cursor: 'pointer',
         clipPath: 'polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%)',
       }}
