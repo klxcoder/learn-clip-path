@@ -48,7 +48,7 @@ function Polygon({
       />
       {points.length >= 3 && <div
         className={styles.box}
-        onClick={() => console.log('Clicked polygon')}
+        onClick={() => alert('Clicked polygon')}
         style={{
           clipPath: `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})`,
         }}
@@ -57,7 +57,7 @@ function Polygon({
         <div
           key={index}
           className={styles.box}
-          onClick={() => console.log('Clicked polygon')}
+          onClick={() => alert(`Clicked point ${index}`)}
           style={{
             clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
           }}
