@@ -8,18 +8,16 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <div>
-        <Polygon
-          points={points}
-          onMouseDown={({ mouseButton, point }) => {
-            if (mouseButton === MouseButton.Left) {
-              setPoints([...points, point]);
-            } else if (mouseButton === MouseButton.Right) {
-              setPoints([]);
-            }
-          }}
-        />
-      </div>
+      <Polygon
+        points={points}
+        onMouseDown={({ mouseButton, point }) => {
+          if (mouseButton === MouseButton.Left) {
+            setPoints([...points, point]);
+          } else if (mouseButton === MouseButton.Right) {
+            setPoints([]);
+          }
+        }}
+      />
     </div>
   )
 }
