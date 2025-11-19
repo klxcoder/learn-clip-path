@@ -6,8 +6,10 @@ const WIDTH: number = 500;
 const HEIGHT: number = 500;
 
 function Polygon({
+  points,
   onMouseDown,
 }: {
+  points: Point[],
   onMouseDown: (props: {
     mouseButton: number,
     point: Point,
@@ -48,7 +50,7 @@ function Polygon({
         className={styles.box}
         onClick={() => console.log('Clicked polygon')}
         style={{
-          clipPath: `polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%)`,
+          clipPath: points.length > 0 ? `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})` : undefined,
         }}
       />
     </div>

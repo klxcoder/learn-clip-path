@@ -10,6 +10,7 @@ function App() {
     <div className={styles.app}>
       <div>
         <Polygon
+          points={points}
           onMouseDown={({ mouseButton, point }) => {
             if (mouseButton === MouseButton.Left) {
               setPoints([...points, point]);
