@@ -6,9 +6,7 @@ function App() {
   return (
     <div className={styles.app}>
       <div>
-        <Polygon
-          onClick={() => alert('Clicked polygon')}
-        />
+        <Polygon />
       </div>
     </div>
   )
