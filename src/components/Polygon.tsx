@@ -70,6 +70,10 @@ function Polygon({
                 alert(`Clicked point ${index}`);
                 break;
               }
+              case PolygonMode.Remove: {
+                setPoints(points.filter((_, i) => i !== index));
+                break;
+              }
             }
           }}
           style={{
