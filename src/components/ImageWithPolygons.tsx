@@ -1,12 +1,12 @@
 import { Fragment, useRef, useState, type ReactElement } from "react";
-import styles from "./Polygon.module.scss";
+import styles from "./ImageWithPolygons.module.scss";
 import { MouseButton, PolygonMode, type Point } from "../constants";
 import classNames from "classnames";
 
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
 
-function Polygon({
+function ImageWithPolygons({
   mode,
 }: {
   mode: number,
@@ -120,4 +120,4 @@ function Polygon({
   );
 }
 
-export default Polygon;
+export default ImageWithPolygons;

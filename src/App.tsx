@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './App.module.scss'
-import Polygon from './components/Polygon'
+import ImageWithPolygons from './components/ImageWithPolygons'
 import { PolygonMode } from './constants';
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
           Remove
         </label>
       </div>
-      <Polygon
+      <ImageWithPolygons
         mode={mode}
       />
     </div>
