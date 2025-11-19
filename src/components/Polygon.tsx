@@ -1,6 +1,6 @@
 import { useRef, type ReactElement } from "react";
 import styles from "./Polygon.module.scss";
-import type { Point } from "../constants";
+import { PolygonMode, type Point } from "../constants";
 
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
@@ -8,12 +8,14 @@ const HEIGHT: number = 500;
 function Polygon({
   points,
   onMouseDown,
+  mode,
 }: {
   points: Point[],
   onMouseDown: (props: {
     mouseButton: number,
     point: Point,
   }) => void,
+  mode: number,
 }): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
   return (
@@ -26,6 +28,7 @@ function Polygon({
       }}
       onMouseDown={(e) => {
         if (!divRef.current) return;
+        if (mode !== PolygonMode.Add) return;
         const rect: DOMRect = divRef.current.getBoundingClientRect();
         const offsetX: number = e.clientX - rect.left;
         const offsetY: number = e.clientY - rect.top;
@@ -48,7 +51,10 @@ function Polygon({
       />
       {points.length >= 3 && <div
         className={styles.box}
-        onClick={() => alert('Clicked polygon')}
+        onClick={() => {
+          if (mode !== PolygonMode.View) return;
+          alert('Clicked polygon');
+        }}
         style={{
           clipPath: `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})`,
         }}
@@ -57,7 +63,10 @@ function Polygon({
         <div
           key={index}
           className={styles.box}
-          onClick={() => alert(`Clicked point ${index}`)}
+          onClick={() => {
+            if (mode !== PolygonMode.View) return;
+            alert(`Clicked point ${index}`);
+          }}
           style={{
             clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
           }}

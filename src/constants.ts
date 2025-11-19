@@ -4,6 +4,12 @@ export const MouseButton = {
   Right: 2,
 } as const;
 
+export const PolygonMode = {
+  Add: 0,
+  Edit: 1,
+  View: 2,
+} as const;
+
 export type Point = {
   x: number,
   y: number,
