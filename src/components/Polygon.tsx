@@ -4,13 +4,15 @@ import styles from "./Polygon.module.scss";
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
 
-const MouseButton = {
-  Left: 0,
-  Middle: 1,
-  Right: 2,
-} as const;
-
-function Polygon(): ReactElement {
+function Polygon({
+  onMouseDown,
+}: {
+  onMouseDown: (props: {
+    mouseButton: number,
+    percentX: number,
+    percentY: number,
+  }) => void,
+}): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
   return (
     <div
@@ -28,11 +30,11 @@ function Polygon(): ReactElement {
         const percentX: number = offsetX / WIDTH * 100;
         const percentY: number = offsetY / HEIGHT * 100;
         const mouseButton: number = e.button;
-        if (mouseButton === MouseButton.Left) {
-          console.log('Left', { percentX, percentY });
-        } else if (mouseButton === MouseButton.Right) {
-          console.log('Right', { percentX, percentY });
-        }
+        onMouseDown({
+          mouseButton,
+          percentX,
+          percentY,
+        });
       }}
       onContextMenu={(e) => e.preventDefault()}
     >
