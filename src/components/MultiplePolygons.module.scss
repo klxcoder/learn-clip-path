@@ -1,0 +1,41 @@
+.parent {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+}
+
+.child {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid blue;
+  /* whole rectangle ignores clicks */
+}
+
+.shape1,
+.shape2 {
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  /* clickable */
+}
+
+/* clip-path applied here so only this area reacts */
+.shape1 {
+  clip-path: circle(25% at 25% 50%);
+  background: rgba(red, 0.2);
+
+  &:hover {
+    background: rgba(red, 0.5);
+  }
+}
+
+.shape2 {
+  clip-path: circle(25% at 75% 50%);
+  background: rgba(green, 0.2);
+
+  &:hover {
+    background: rgba(green, 0.5);
+  }
+}
