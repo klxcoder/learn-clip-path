@@ -26,6 +26,11 @@ function Polygon({
       }}
       onMouseDown={(e) => {
         if (!divRef.current) return;
+        const mouseButton: number = e.button;
+        if (mouseButton === MouseButton.Middle) {
+          console.log(points);
+          return;
+        }
         const rect: DOMRect = divRef.current.getBoundingClientRect();
         const offsetX: number = e.clientX - rect.left;
         const offsetY: number = e.clientY - rect.top;
