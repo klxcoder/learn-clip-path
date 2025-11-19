@@ -8,6 +8,7 @@ export const PolygonMode = {
   Add: 0,
   Edit: 1,
   View: 2,
+  Remove: 3,
 } as const;
 
 export type Point = {

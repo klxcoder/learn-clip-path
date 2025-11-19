@@ -52,8 +52,12 @@ function Polygon({
       {points.length >= 3 && <div
         className={styles.box}
         onClick={() => {
-          if (mode !== PolygonMode.View) return;
-          alert('Clicked polygon');
+          switch (mode) {
+            case PolygonMode.View: {
+              alert('Clicked polygon');
+              break;
+            }
+          }
         }}
         style={{
           clipPath: `polygon(${points.map(point => `${point.x}% ${point.y}%`).join(',')})`,
@@ -64,8 +68,12 @@ function Polygon({
           key={index}
           className={styles.box}
           onClick={() => {
-            if (mode !== PolygonMode.View) return;
-            alert(`Clicked point ${index}`);
+            switch (mode) {
+              case PolygonMode.View: {
+                alert(`Clicked point ${index}`);
+                break;
+              }
+            }
           }}
           style={{
             clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
