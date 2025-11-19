@@ -1,17 +1,16 @@
-import './App.css'
+import styles from './App.module.scss'
 import Polygon from './components/Polygon'
 
 function App() {
 
   return (
-    <>
-      <div>Minimal</div>
+    <div className={styles.app}>
       <div>
         <Polygon
           onClick={() => alert('Clicked polygon')}
         />
       </div>
-    </>
+    </div>
   )
 }
 
