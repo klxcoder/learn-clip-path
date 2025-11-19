@@ -13,8 +13,7 @@ function Polygon({
 }): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
   const [points, setPoints] = useState<Point[]>([]);
-  const [activePoint, setActivePoint] = useState<number>();
-  console.log({ activePoint });
+  const [activePoint, setActivePoint] = useState<number>(-1);
   return (
     <div
       ref={divRef}
@@ -25,7 +24,6 @@ function Polygon({
       }}
       onMouseDown={(e) => {
         if (!divRef.current) return;
-        if (mode !== PolygonMode.Add) return;
         const rect: DOMRect = divRef.current.getBoundingClientRect();
         const offsetX: number = e.clientX - rect.left;
         const offsetY: number = e.clientY - rect.top;
@@ -35,13 +33,22 @@ function Polygon({
           x: percentX,
           y: percentY,
         }
-        const mouseButton: number = e.button;
-        if (mouseButton === MouseButton.Left) {
-          setPoints([...points, point]);
-        } else if (mouseButton === MouseButton.Right) {
-          setPoints([]);
+        switch (mode) {
+          case PolygonMode.Add: {
+            const mouseButton: number = e.button;
+            if (mouseButton === MouseButton.Left) {
+              setPoints([...points, point]);
+            } else if (mouseButton === MouseButton.Right) {
+              setPoints([]);
+              setActivePoint(-1);
+            }
+            break;
+          }
+          case PolygonMode.Edit: {
+            setPoints(points.map((p, index) => index !== activePoint ? p : point));
+            break;
+          }
         }
-
       }}
       onContextMenu={(e) => e.preventDefault()}
     >
@@ -79,6 +86,7 @@ function Polygon({
               }
               case PolygonMode.Remove: {
                 setPoints(points.filter((_, i) => i !== index));
+                setActivePoint(-1);
                 break;
               }
             }
