@@ -1,13 +1,11 @@
+import { useState } from 'react';
 import styles from './App.module.scss'
 import Polygon from './components/Polygon'
-
-export const MouseButton = {
-  Left: 0,
-  Middle: 1,
-  Right: 2,
-} as const;
+import { MouseButton, type Point } from './constants';
 
 function App() {
+  const [points, setPoints] = useState<Point[]>([]);
+  console.log(points);
 
   return (
     <div className={styles.app}>
@@ -15,9 +13,12 @@ function App() {
         <Polygon
           onMouseDown={({ mouseButton, percentX, percentY }) => {
             if (mouseButton === MouseButton.Left) {
-              console.log('Left', { percentX, percentY });
+              setPoints([...points, {
+                x: percentX,
+                y: percentY,
+              }]);
             } else if (mouseButton === MouseButton.Right) {
-              console.log('Right', { percentX, percentY });
+              setPoints([]);
             }
           }}
         />
