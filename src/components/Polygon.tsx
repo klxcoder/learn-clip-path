@@ -1,23 +1,17 @@
-import { useRef, type ReactElement } from "react";
+import { useRef, useState, type ReactElement } from "react";
 import styles from "./Polygon.module.scss";
-import { PolygonMode, type Point } from "../constants";
+import { MouseButton, PolygonMode, type Point } from "../constants";
 
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
 
 function Polygon({
-  points,
-  onMouseDown,
   mode,
 }: {
-  points: Point[],
-  onMouseDown: (props: {
-    mouseButton: number,
-    point: Point,
-  }) => void,
   mode: number,
 }): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
+  const [points, setPoints] = useState<Point[]>([]);
   return (
     <div
       ref={divRef}
@@ -34,14 +28,17 @@ function Polygon({
         const offsetY: number = e.clientY - rect.top;
         const percentX: number = offsetX / WIDTH * 100;
         const percentY: number = offsetY / HEIGHT * 100;
+        const point: Point = {
+          x: percentX,
+          y: percentY,
+        }
         const mouseButton: number = e.button;
-        onMouseDown({
-          mouseButton,
-          point: {
-            x: percentX,
-            y: percentY,
-          }
-        });
+        if (mouseButton === MouseButton.Left) {
+          setPoints([...points, point]);
+        } else if (mouseButton === MouseButton.Right) {
+          setPoints([]);
+        }
+
       }}
       onContextMenu={(e) => e.preventDefault()}
     >

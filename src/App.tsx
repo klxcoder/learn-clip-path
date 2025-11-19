@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styles from './App.module.scss'
 import Polygon from './components/Polygon'
-import { MouseButton, PolygonMode, type Point } from './constants';
+import { PolygonMode } from './constants';
 
 function App() {
   const [mode, setMode] = useState<number>(PolygonMode.Add);
-  const [points, setPoints] = useState<Point[]>([]);
 
   return (
     <div className={styles.app}>
@@ -48,14 +47,6 @@ function App() {
         </label>
       </div>
       <Polygon
-        points={points}
-        onMouseDown={({ mouseButton, point }) => {
-          if (mouseButton === MouseButton.Left) {
-            setPoints([...points, point]);
-          } else if (mouseButton === MouseButton.Right) {
-            setPoints([]);
-          }
-        }}
         mode={mode}
       />
     </div>
