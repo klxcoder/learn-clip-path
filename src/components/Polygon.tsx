@@ -14,6 +14,8 @@ function Polygon({
   const divRef = useRef<HTMLDivElement>(null);
   const [points, setPoints] = useState<Point[]>([]);
   const [activePoint, setActivePoint] = useState<number>(-1);
+  const [hoverPoint, setHoverPoint] = useState<boolean>(false);
+
   return (
     <div
       ref={divRef}
@@ -45,6 +47,7 @@ function Polygon({
             break;
           }
           case PolygonMode.Edit: {
+            if (hoverPoint) return;
             setPoints(points.map((p, index) => index !== activePoint ? p : point));
             break;
           }
@@ -91,6 +94,8 @@ function Polygon({
               }
             }
           }}
+          onMouseEnter={() => setHoverPoint(true)}
+          onMouseLeave={() => setHoverPoint(false)}
           style={{
             clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
           }}
