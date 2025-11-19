@@ -35,12 +35,14 @@
     }
   }
 
-  .index {
-    color: rgba(100, 100, 100, 0.5);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.5rem;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    user-select: none;
+  .circle {
+    .index {
+      color: rgba(100, 100, 100, 0.5);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.5rem;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      user-select: none;
+    }
   }
 }

@@ -42,7 +42,6 @@ function Polygon({
         }
         switch (mode) {
           case PolygonMode.Add: {
-            const mouseButton: number = e.button;
             if (mouseButton === MouseButton.Left) {
               setPoints([...points, point]);
             } else if (mouseButton === MouseButton.Right) {
@@ -106,14 +105,15 @@ function Polygon({
             style={{
               clipPath: `circle(2% at ${point.x}% ${point.y}%)`,
             }}
-          />
-          <div
-            className={styles.index}
-            style={{
-              left: `${point.x}%`,
-              top: `${point.y}%`,
-            }}
-          >{index}</div>
+          >
+            <div
+              className={styles.index}
+              style={{
+                left: `${point.x}%`,
+                top: `${point.y}%`,
+              }}
+            >{index}</div>
+          </div>
         </Fragment>
       ))}
     </div>
