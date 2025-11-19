@@ -43,6 +43,9 @@ function Polygon(): ReactElement {
       <div
         className={styles.box}
         onClick={() => console.log('Clicked polygon')}
+        style={{
+          clipPath: `polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%)`,
+        }}
       />
     </div>
   );
