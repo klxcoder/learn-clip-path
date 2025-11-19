@@ -1,5 +1,6 @@
 import { useRef, type ReactElement } from "react";
 import styles from "./Polygon.module.scss";
+import type { Point } from "../constants";
 
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
@@ -9,8 +10,7 @@ function Polygon({
 }: {
   onMouseDown: (props: {
     mouseButton: number,
-    percentX: number,
-    percentY: number,
+    point: Point,
   }) => void,
 }): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
@@ -32,8 +32,10 @@ function Polygon({
         const mouseButton: number = e.button;
         onMouseDown({
           mouseButton,
-          percentX,
-          percentY,
+          point: {
+            x: percentX,
+            y: percentY,
+          }
         });
       }}
       onContextMenu={(e) => e.preventDefault()}

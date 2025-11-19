@@ -5,18 +5,14 @@ import { MouseButton, type Point } from './constants';
 
 function App() {
   const [points, setPoints] = useState<Point[]>([]);
-  console.log(points);
 
   return (
     <div className={styles.app}>
       <div>
         <Polygon
-          onMouseDown={({ mouseButton, percentX, percentY }) => {
+          onMouseDown={({ mouseButton, point }) => {
             if (mouseButton === MouseButton.Left) {
-              setPoints([...points, {
-                x: percentX,
-                y: percentY,
-              }]);
+              setPoints([...points, point]);
             } else if (mouseButton === MouseButton.Right) {
               setPoints([]);
             }
