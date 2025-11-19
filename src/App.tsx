@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <div>
+      <div className={styles.exp1}>
         <div className={styles.chooseMode}>
           <label>
             <input
