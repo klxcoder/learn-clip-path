@@ -1,6 +1,7 @@
 import { useRef, useState, type ReactElement } from "react";
 import styles from "./Polygon.module.scss";
 import { MouseButton, PolygonMode, type Point } from "../constants";
+import classNames from "classnames";
 
 const WIDTH: number = 500;
 const HEIGHT: number = 500;
@@ -13,6 +14,7 @@ function Polygon({
   const divRef = useRef<HTMLDivElement>(null);
   const [points, setPoints] = useState<Point[]>([]);
   const [activePoint, setActivePoint] = useState<number>();
+  console.log({ activePoint });
   return (
     <div
       ref={divRef}
@@ -64,7 +66,10 @@ function Polygon({
       {points.map((point, index) => (
         <div
           key={index}
-          className={styles.circle}
+          className={classNames(
+            styles.circle,
+            index === activePoint ? styles.active : '',
+          )}
           onClick={() => {
             setActivePoint(index);
             switch (mode) {
