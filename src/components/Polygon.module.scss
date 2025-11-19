@@ -29,7 +29,8 @@
   .circle {
     background-color: rgba(0, 255, 0, 0.2);
 
-    &:hover {
+    &:hover,
+    &.active {
       background-color: rgba(0, 255, 0, 0.4);
     }
   }

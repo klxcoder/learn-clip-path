@@ -12,6 +12,7 @@ function Polygon({
 }): ReactElement {
   const divRef = useRef<HTMLDivElement>(null);
   const [points, setPoints] = useState<Point[]>([]);
+  const [activePoint, setActivePoint] = useState<number>();
   return (
     <div
       ref={divRef}
@@ -65,6 +66,7 @@ function Polygon({
           key={index}
           className={styles.circle}
           onClick={() => {
+            setActivePoint(index);
             switch (mode) {
               case PolygonMode.View: {
                 alert(`Clicked point ${index}`);
