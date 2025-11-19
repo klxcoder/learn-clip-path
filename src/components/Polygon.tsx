@@ -47,7 +47,7 @@ function Polygon({
         src="./animals.webp"
       />
       {points.length >= 3 && <div
-        className={styles.box}
+        className={styles.polygon}
         onClick={() => {
           switch (mode) {
             case PolygonMode.View: {
@@ -63,7 +63,7 @@ function Polygon({
       {points.map((point, index) => (
         <div
           key={index}
-          className={styles.box}
+          className={styles.circle}
           onClick={() => {
             switch (mode) {
               case PolygonMode.View: {
